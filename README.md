@@ -9,7 +9,7 @@ SublimeLinter 3 must be installed in order to use this plugin. If SublimeLinter 
 ### Linter installation
 Before using this plugin, you must ensure that `golint` is installed on your system. To install `golint`, do the following:
 
-1. Install golint (follow instructions on [golint page](https://github.com/golang/lint)
+1. Install golint (follow instructions for [golint](https://github.com/golang/lint))
 
 Once `golint` is installed, you must ensure it is in your system PATH so that SublimeLinter can find it. This may not be as straightforward as you think, so please read about [how linter executables are located][locating-executables] in the documentation.
 
