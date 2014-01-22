@@ -1,9 +1,9 @@
 SublimeLinter-contrib-golint
 ================================
 
-This linter plugin for [SublimeLinter][docs] provides an interface to [golint](https://github.com/golang/lint). It will be used with files that have the “__syntax__” syntax.
+This linter plugin for [SublimeLinter][docs] provides an interface to [golint](https://github.com/golang/lint). It will be used with files that have the “Go” syntax.
 
-Golint is a tool for improving go code. It is _not_ for catching errors! It is probably best to use this linter in combination with the [go vet linter](https://github.com/SirReal/SublimeLinter-contrib-vet).
+Golint is a tool for improving go code. It is _not_ for catching errors! It is probably best to use this linter in combination with another error catching linter, such as [gotype](https://github.com/SirReal/SublimeLinter-contrib-gotype).
 
 ## Installation
 SublimeLinter 3 must be installed in order to use this plugin. If SublimeLinter 3 is not installed, please follow the instructions [here][installation].
@@ -11,9 +11,7 @@ SublimeLinter 3 must be installed in order to use this plugin. If SublimeLinter 
 ### Linter installation
 Before using this plugin, you must ensure that `golint` is installed on your system. To install `golint`, do the following:
 
-1. Install golint (follow instructions for [golint](https://github.com/golang/lint))
-
-Once `golint` is installed, you must ensure it is in your system PATH so that SublimeLinter can find it. This may not be as straightforward as you think, so please read about [how linter executables are located][locating-executables] in the documentation.
+1. Follow the instructions for installing [golint](https://github.com/golang/lint)).
 
 ### Linter configuration
 In order for `golint` to be executed by SublimeLinter, you must ensure that its path is available to SublimeLinter. Before going any further, please read and follow the steps in [“Finding a linter executable”](http://sublimelinter.readthedocs.org/en/latest/troubleshooting.html#finding-a-linter-executable) through “Validating your PATH” in the documentation.
