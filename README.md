@@ -9,9 +9,7 @@ Golint is a tool for improving go code. It is _not_ for catching errors! It is p
 SublimeLinter 3 must be installed in order to use this plugin. If SublimeLinter 3 is not installed, please follow the instructions [here][installation].
 
 ### Linter installation
-Before using this plugin, you must ensure that `golint` is installed on your system. To install `golint`, do the following:
-
-1. Follow the instructions for installing [golint](https://github.com/golang/lint)).
+Before using this plugin, you must ensure that `golint` is installed on your system. To install, follow the instructions provided by [golint](https://github.com/golang/lint).
 
 ### Linter configuration
 In order for `golint` to be executed by SublimeLinter, you must ensure that its path is available to SublimeLinter. Before going any further, please read and follow the steps in [“Finding a linter executable”](http://sublimelinter.readthedocs.org/en/latest/troubleshooting.html#finding-a-linter-executable) through “Validating your PATH” in the documentation.
