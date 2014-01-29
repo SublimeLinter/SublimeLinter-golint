@@ -17,7 +17,7 @@ class Golint(Linter):
 
     """Provides an interface to golint."""
 
-    syntax = 'go'
+    syntax = ('go', 'gosublime-go')
     cmd = 'golint'
     regex = r'^.+:(?P<line>\d+):(?P<col>\d+):\s+(?P<message>.+)'
     tempfile_suffix = 'go'
