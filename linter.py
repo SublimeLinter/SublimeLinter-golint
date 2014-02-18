@@ -26,6 +26,7 @@ class Golint(Linter):
     default_type = highlight.WARNING
 
     def find_gopaths(self):
+        """ search for potential GOPATHs """
 
         # collect existing Go path info
         goroot = set(os.path.normpath(s) for s in os.environ.get('GOROOT', '').split(os.pathsep))
@@ -52,6 +53,7 @@ class Golint(Linter):
         return os.pathsep.join(gopath)
 
     def run(self, cmd, code):
+        """ transparently add potential GOPATHs before running """
 
         self.env = {'GOPATH': self.find_gopaths()}
 
