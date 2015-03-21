@@ -1,11 +1,11 @@
 SublimeLinter-contrib-golint
 ================================
 
-[![Build Status](https://travis-ci.org/SirReal/SublimeLinter-contrib-golint.png?branch=master)](https://travis-ci.org/SirReal/SublimeLinter-contrib-golint)
+[![Build Status](https://travis-ci.org/sirreal/SublimeLinter-contrib-golint.png?branch=master)](https://travis-ci.org/sirreal/SublimeLinter-contrib-golint)
 
 This linter plugin for [SublimeLinter][docs] provides an interface to [golint](https://github.com/golang/lint). It will be used with files that have the “Go” syntax.
 
-Golint is a tool for improving go code. It is _not_ for catching errors! It is probably best to use this linter in combination with another error catching linter, such as [gotype](https://github.com/SirReal/SublimeLinter-contrib-gotype).
+Golint is a tool for improving go code. It is _not_ for catching errors! It is probably best to use this linter in combination with another error catching linter, such as [gotype](https://github.com/sirreal/SublimeLinter-contrib-gotype).
 
 ## Installation
 SublimeLinter 3 must be installed in order to use this plugin. If SublimeLinter 3 is not installed, please follow the instructions [here][installation].
