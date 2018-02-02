@@ -10,7 +10,7 @@
 
 """This module exports the Golint plugin class."""
 
-from SublimeLinter.lint import Linter, util, highlight, persist
+from SublimeLinter.lint import Linter, util, const, persist
 import os
 
 
@@ -23,7 +23,7 @@ class Golint(Linter):
     regex = r'^.+:(?P<line>\d+):(?P<col>\d+):\s+(?P<message>.+)'
     tempfile_suffix = 'go'
     error_stream = util.STREAM_STDOUT
-    default_type = highlight.WARNING
+    default_type = const.WARNING
 
     def find_gopaths(self):
         """search for potential GOPATHs."""
