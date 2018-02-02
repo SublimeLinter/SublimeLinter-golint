@@ -13,7 +13,6 @@
 from SublimeLinter.lint import Linter, util, const, persist
 import os
 
-
 class Golint(Linter):
 
     """Provides an interface to golint."""
