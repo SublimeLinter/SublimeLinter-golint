@@ -13,12 +13,10 @@
 from SublimeLinter.lint import Linter, util, persist
 import os
 
-try:
-    """SublimeLinter v3"""
-    from SublimeLinter.lint import highlight
-except ImportError:
-    """SublimeLinter v4"""
+if getattr(SublimeLinter.lint, 'VERSION', 3) > 3:
     from SublimeLinter.lint import const
+else:
+    from SublimeLinter.lint import highlight
 
 
 class Golint(Linter):
@@ -31,12 +29,10 @@ class Golint(Linter):
     tempfile_suffix = 'go'
     error_stream = util.STREAM_STDOUT
 
-    try:
-        """SublimeLinter v3"""
-        default_type = highlight.WARNING
-    except NameError:
-        """SublimeLinter v4"""
+    if getattr(SublimeLinter.lint, 'VERSION', 3) > 3:
         default_type = const.WARNING
+    else:
+        default_type = highlight.WARNING
 
     def find_gopaths(self):
         """Search for potential GOPATHs."""
