@@ -10,13 +10,15 @@
 
 """This module exports the Golint plugin class."""
 
-from SublimeLinter.lint import Linter, util, persist
 import os
+import SublimeLinter
 
 if getattr(SublimeLinter.lint, 'VERSION', 3) > 3:
-    from SublimeLinter.lint import const
+    from SublimeLinter.lint import const, Linter
+    WARNING = const.WARNING
 else:
-    from SublimeLinter.lint import highlight
+    from SublimeLinter.lint import highlight, Linter
+    WARNING = highlight.WARNING
 
 
 class Golint(Linter):
@@ -27,12 +29,8 @@ class Golint(Linter):
     cmd = 'golint'
     regex = r'^.+:(?P<line>\d+):(?P<col>\d+):\s+(?P<message>.+)'
     tempfile_suffix = 'go'
-    error_stream = util.STREAM_STDOUT
-
-    if getattr(SublimeLinter.lint, 'VERSION', 3) > 3:
-        default_type = const.WARNING
-    else:
-        default_type = highlight.WARNING
+    error_stream = SublimeLinter.lint.util.STREAM_STDOUT
+    default_type = WARNING
 
     def find_gopaths(self):
         """Search for potential GOPATHs."""
@@ -53,8 +51,8 @@ class Golint(Linter):
             if p not in goroot and p not in gopath:
                 gopath.append(p)
 
-        if persist.debug_mode():
-            persist.printf("{}: {} {}".format(self.name,
+        if SublimeLinter.lint.persist.debug_mode():
+            SublimeLinter.lint.persist.printf("{}: {} {}".format(self.name,
                                               os.path.basename(self.filename or '<unsaved>'),
                                               "guessed GOPATH=" + os.pathsep.join(gopath)))
 
@@ -65,8 +63,8 @@ class Golint(Linter):
         self.env = {'GOPATH': self.find_gopaths()}
 
         # copy debug output from Linter.run()
-        if persist.debug_mode():
-            persist.printf('{}: {} {}'.format(self.name,
+        if SublimeLinter.lint.persist.debug_mode():
+            SublimeLinter.lint.persist.printf('{}: {} {}'.format(self.name,
                                               os.path.basename(self.filename or '<unsaved>'),
                                               cmd or '<builtin>'))
 
