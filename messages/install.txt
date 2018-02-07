@@ -1,10 +1,7 @@
-SublimeLinter-contrib-golint
+SublimeLinter-golint
 -------------------------------
 This linter plugin for SublimeLinter provides an interface to golint.
 
-** IMPORTANT! **
+For more information on installing and configuring this linter:
 
-Before this plugin will activate, you *must*
-follow the installation instructions here:
-
-https://github.com/SirReal/SublimeLinter-contrib-golint
+https://github.com/SublimeLinter/SublimeLinter-golint
