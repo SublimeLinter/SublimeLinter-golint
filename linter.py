@@ -12,13 +12,13 @@
 
 import os
 import SublimeLinter.lint
-from SublimeLinter.lint import util, persist
+from SublimeLinter.lint import util, persist, Linter
 
 if getattr(SublimeLinter.lint, 'VERSION', 3) > 3:
-    from SublimeLinter.lint import const, Linter
+    from SublimeLinter.lint import const
     WARNING = const.WARNING
 else:
-    from SublimeLinter.lint import highlight, Linter
+    from SublimeLinter.lint import highlight
     WARNING = highlight.WARNING
 
 
