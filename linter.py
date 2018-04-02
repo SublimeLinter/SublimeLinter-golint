@@ -1,37 +1,21 @@
 #
-# linter.py
-# Linter for SublimeLinter3, a code checking framework for Sublime Text 3
-#
 # Written by Jon Surrell and Jeremy Jay
 # Copyright (c) 2014 Jon Surrell
 #
-# License: MIT
-#
-
-"""This module exports the Golint plugin class."""
 
 import os
-import SublimeLinter.lint
-from SublimeLinter.lint import util, persist, Linter
-
-if getattr(SublimeLinter.lint, 'VERSION', 3) > 3:
-    from SublimeLinter.lint import const
-    WARNING = const.WARNING
-else:
-    from SublimeLinter.lint import highlight
-    WARNING = highlight.WARNING
+from SublimeLinter.lint import util, persist, Linter, WARNING
 
 
 class Golint(Linter):
-
-    """Provides an interface to golint."""
-
-    syntax = ('go', 'gosublime-go')
     cmd = 'golint'
     regex = r'^.+:(?P<line>\d+):(?P<col>\d+):\s+(?P<message>.+)'
     tempfile_suffix = 'go'
     error_stream = util.STREAM_STDOUT
     default_type = WARNING
+    defaults = {
+        'selector': 'source.go'
+    }
 
     def find_gopaths(self):
         """Search for potential GOPATHs."""
@@ -52,10 +36,10 @@ class Golint(Linter):
             if p not in goroot and p not in gopath:
                 gopath.append(p)
 
-        if persist.debug_mode():
-            persist.printf("{}: {} {}".format(self.name,
-                                              os.path.basename(self.filename or '<unsaved>'),
-                                              "guessed GOPATH=" + os.pathsep.join(gopath)))
+        persist.debug("{}: {} {}".format(
+            self.name,
+            os.path.basename(self.filename or '<unsaved>'),
+            "guessed GOPATH=" + os.pathsep.join(gopath)))
 
         return os.pathsep.join(gopath)
 
@@ -64,9 +48,9 @@ class Golint(Linter):
         self.env = {'GOPATH': self.find_gopaths()}
 
         # copy debug output from Linter.run()
-        if persist.debug_mode():
-            persist.printf('{}: {} {}'.format(self.name,
-                                              os.path.basename(self.filename or '<unsaved>'),
-                                              cmd or '<builtin>'))
+        persist.debug('{}: {} {}'.format(
+            self.name,
+            os.path.basename(self.filename or '<unsaved>'),
+            cmd or '<builtin>'))
 
         return self.tmpfile(cmd, code, suffix=self.get_tempfile_suffix())
