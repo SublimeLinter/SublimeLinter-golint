@@ -21,6 +21,7 @@ from SublimeLinter.lint import util, Linter, WARNING
 #       },
 #   },
 
+
 class Golint(Linter):
     cmd = 'golint'
     regex = r'^.+:(?P<line>\d+):(?P<col>\d+):\s+(?P<message>.+)'
@@ -33,8 +34,9 @@ class Golint(Linter):
 
     def split_match(self, match):
         """Process each match modifying or discarding it."""
-        match, line, col, error, warning, message, near = super().split_match(match)
-        #logger.info(message)
+        match, line, col, error, warning, message, near = \
+            super().split_match(match)
+        # logger.info(message)
         ignores = self._inline_setting('ignores')
         # find that "ignores" option is defined
         if ignores:
@@ -44,21 +46,20 @@ class Golint(Linter):
             if isinstance(ignores, dict):
                 for key, value in ignores.items():
                     if isinstance(value, int) and value != 0 or \
-                        str(value).upper() in ('1', 'TRUE'):
+                            str(value).upper() in ('1', 'TRUE'):
                         if message and message.find(key) != -1 or \
-                            error and error.find(key) != -1 or \
-                            warning and warning.find(key) != -1:
+                                error and error.find(key) != -1 or \
+                                warning and warning.find(key) != -1:
                             return None, None, None, None, None, '', None
             # support case when "ignores" declared as
             # a JSON array: "ignores": [ "ALL_CAPS" ]
             elif isinstance(ignores, list):
                 for item in ignores:
                     if message and message.find(item) != -1 or \
-                        error and error.find(item) != -1 or \
-                        warning and warning.find(item) != -1:
-                        return None, None, None, None, None, '', None                
+                            error and error.find(item) != -1 or \
+                            warning and warning.find(item) != -1:
+                        return None, None, None, None, None, '', None
         return match, line, col, error, warning, message, near
-
 
     def _inline_setting(self, s):
         """Get an inline setting as a bool."""
